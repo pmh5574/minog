@@ -1,8 +1,12 @@
 package com.minog.minog.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.minog.minog.request.PostCreate;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
+@Slf4j
 @RestController
 public class PostController {
 
@@ -13,8 +17,15 @@ public class PostController {
     // react -> react+SSR -> next.js
            // -> javascript <-> API (JSON)
 
-    @GetMapping("/posts")
-    public String get() {
+    // Http Method
+    // GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD, TRACE, CONNECT
+    // 글 등록
+    // POST Method
+
+    @PostMapping("/posts")
+    public String post(@ModelAttribute PostCreate params) {
+        log.info("params={}", params.toString());
+
         return "Hello world";
     }
 
