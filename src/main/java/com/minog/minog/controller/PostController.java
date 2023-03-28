@@ -2,8 +2,13 @@ package com.minog.minog.controller;
 
 import com.minog.minog.request.PostCreate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -23,10 +28,20 @@ public class PostController {
     // POST Method
 
     @PostMapping("/posts")
-    public String post(@RequestBody PostCreate params) {
-        log.info("params={}", params.toString());
+    public Map<String, String> post(@RequestBody @Valid PostCreate params, BindingResult result) {
+        if (result.hasErrors()) {
+            List<FieldError> fieldErrors = result.getFieldErrors();
+            FieldError firstFieldError = fieldErrors.get(0);
+            String fieldName = firstFieldError.getField(); // title
+            String errorMessge = firstFieldError.getDefaultMessage(); // ..에러 메세지
 
-        return "Hello world";
+            Map<String, String> error = new HashMap<>();
+            error.put(fieldName, errorMessge);
+            return error;
+
+        }
+        log.info("params={}", params.toString());
+        return Map.of();
     }
 
 }
