@@ -10,7 +10,7 @@ public class PostController {
             // -> html rendering
     // SPA ->
     // vue -> vue+SSR = nuxt.js
-    // react -> react+SSR -> next.js
+    // react -> react+SSR -> next.js ㅆ
            // -> javascript <-> API (JSON)
 
     @GetMapping("/posts")
