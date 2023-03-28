@@ -23,7 +23,7 @@ public class PostController {
     // POST Method
 
     @PostMapping("/posts")
-    public String post(@ModelAttribute PostCreate params) {
+    public String post(@RequestBody PostCreate params) {
         log.info("params={}", params.toString());
 
         return "Hello world";
