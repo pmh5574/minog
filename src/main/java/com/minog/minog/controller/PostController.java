@@ -1,19 +1,14 @@
 package com.minog.minog.controller;
 
-import com.minog.minog.domain.Post;
 import com.minog.minog.request.PostCreate;
 import com.minog.minog.response.PostResponse;
 import com.minog.minog.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -50,13 +45,12 @@ public class PostController {
      */
 
     @GetMapping("/posts/{postId}")
-    public PostResponse get(@PathVariable(name = "postId") Long id) {
-        // Request 클래스
-        // Response 클래스
-
-
-        PostResponse postResponse = postService.get(id);
-        return postResponse;
+    public PostResponse get(@PathVariable Long postId) {
+        return postService.get(postId);
     }
 
+    @GetMapping("/posts")
+    public List<PostResponse> getList() {
+        return postService.getList();
+    }
 }
