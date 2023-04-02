@@ -3,12 +3,10 @@ package com.minog.minog.service;
 import com.minog.minog.domain.Post;
 import com.minog.minog.repository.PostRepository;
 import com.minog.minog.request.PostCreate;
+import com.minog.minog.request.PostSearch;
 import com.minog.minog.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,9 +40,9 @@ public class PostService {
                 .build();
     }
 
-    public List<PostResponse> getList(Pageable pageable) {
+    public List<PostResponse> getList(PostSearch postSearch) {
 
-        return postRepository.findAll(pageable).stream()
+        return postRepository.getList(postSearch).stream()
 //                .map(post -> new PostResponse(post)) // 위 아래 동일
                 .map(PostResponse::new)
                 .collect(Collectors.toList());

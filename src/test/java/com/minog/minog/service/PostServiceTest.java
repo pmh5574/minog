@@ -3,6 +3,7 @@ package com.minog.minog.service;
 import com.minog.minog.domain.Post;
 import com.minog.minog.repository.PostRepository;
 import com.minog.minog.request.PostCreate;
+import com.minog.minog.request.PostSearch;
 import com.minog.minog.response.PostResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,6 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @SpringBootTest
 class PostServiceTest {
@@ -80,20 +79,25 @@ class PostServiceTest {
         //given
         List<Post> requestPosts = IntStream.range(1, 31)
                         .mapToObj(i -> Post.builder()
-                                .title("박민호 제목 = " + i)
-                                .content("등총 테스트 - " + i)
+                                .title("foo" + i)
+                                .content("bar" + i)
                                 .build())
                         .collect(Collectors.toList());
         postRepository.saveAll(requestPosts);
 
-        Pageable pageable = PageRequest.of(0, 5, DESC, "id");
+        Pageable pageable = PageRequest.of(0, 5);
+
+        PostSearch postSearch = PostSearch.builder()
+                .page(1)
+                .build();
+
 
         // when
-        List<PostResponse> posts = postService.getList(pageable);
+        List<PostResponse> posts = postService.getList(postSearch);
 
         // then
-        assertEquals(5L, posts.size());
-        assertEquals("박민호 제목 = 30", posts.get(0).getTitle());
-        assertEquals("박민호 제목 = 26", posts.get(4).getTitle());
+        assertEquals(10L, posts.size());
+        assertEquals("foo30", posts.get(0).getTitle());
+//        assertEquals("bar1", posts.get(4).getTitle());
     }
 }

@@ -14,7 +14,7 @@ public class PostCreate {
     @NotBlank(message = "콘텐츠를 입력해주세요.")
     private String content;
 
-    //@AllArgsConstructor로 변경 가능
+    //@AllArgsConstructor로 변경 가능 Builder을 사용하기 위해 생성자 생성
     @Builder
     public PostCreate(String title, String content) {
         this.title = title;
