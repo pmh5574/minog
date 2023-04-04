@@ -1,6 +1,7 @@
 package com.minog.minog.controller;
 
 import com.minog.minog.request.PostCreate;
+import com.minog.minog.request.PostEdit;
 import com.minog.minog.request.PostSearch;
 import com.minog.minog.response.PostResponse;
 import com.minog.minog.service.PostService;
@@ -53,5 +54,10 @@ public class PostController {
     @GetMapping("/posts")
     public List<PostResponse> getList(@ModelAttribute PostSearch postSearch) {
         return postService.getList(postSearch);
+    }
+
+    @PatchMapping("/posts/{postId}")
+    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request) {
+        postService.edit(postId, request);
     }
 }
