@@ -155,4 +155,22 @@ class PostServiceTest {
         assertEquals("foo", changedPost.getTitle());
         assertEquals("테스트", changedPost.getContent());
     }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    void test6() {
+        //given
+        Post post = Post.builder()
+                .title("foo")
+                .content("bar")
+                .build();
+
+        postRepository.save(post);
+
+        // when
+        postService.delete(post.getId());
+
+        // then
+        Assertions.assertEquals(0, postRepository.count());
+    }
 }
