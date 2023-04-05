@@ -2,9 +2,7 @@ package com.minog.minog.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,20 +15,22 @@ import java.util.Map;
  * }
  */
 @Getter
+// @JsonInclude(value = JsonInclude.Include.NON_EMPTY) 사용하면 빈값은 제거 가능
 public class ErrorResponse {
 
     private final String code;
     private final String message;
-    private Map<String, String> validation = new HashMap<>();
+    private final Map<String, String> validation;
 
     @Builder
-    public ErrorResponse(String code, String message) {
+    public ErrorResponse(String code, String message, Map<String, String> validation) {
         this.code = code;
         this.message = message;
+        this.validation = validation;
     }
 
     public void addValidation(String fieldName, String errorMessage) {
-        this.validation.put(fieldName, errorMessage);
+        validation.put(fieldName, errorMessage);
     }
 
 }
