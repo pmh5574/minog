@@ -78,15 +78,14 @@ class PostControllerTest {
                 .build();
 
         String json = objectMapper.writeValueAsString(request);
-        System.out.println(json);
 
         mockMvc.perform(post("/posts")
                         .contentType(APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isBadRequest())
-//                .andExpect(jsonPath("$.code").value("400"))
-//                .andExpect(jsonPath("$.message").value("잘못된 요청입니다."))
-//                .andExpect(jsonPath("$.validation.title").value("타이틀을 입력해주세요."))
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.message").value("잘못된 요청입니다."))
+                .andExpect(jsonPath("$.validation.title").value("타이틀을 입력해주세요."))
                 .andDo(print());
     }
 
