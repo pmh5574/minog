@@ -2,6 +2,7 @@ package com.minog.minog.service;
 
 import com.minog.minog.domain.Post;
 import com.minog.minog.domain.PostEditor;
+import com.minog.minog.exception.PostNotFound;
 import com.minog.minog.repository.PostRepository;
 import com.minog.minog.request.PostCreate;
 import com.minog.minog.request.PostEdit;
@@ -34,7 +35,7 @@ public class PostService {
 
     public PostResponse get(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(PostNotFound::new);
 
         return PostResponse.builder()
                 .id(post.getId())
@@ -55,7 +56,7 @@ public class PostService {
     public void edit(Long id, PostEdit postEdit) {
         // Transactional이 save를 달고 있음
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(PostNotFound::new);
 
         PostEditor.PostEditorBuilder editorBuilder = post.toEditor();
 
@@ -69,7 +70,7 @@ public class PostService {
 
     public void delete(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(PostNotFound::new);
 
         postRepository.delete(post);
     }

@@ -1,12 +1,12 @@
 package com.minog.minog.service;
 
 import com.minog.minog.domain.Post;
+import com.minog.minog.exception.PostNotFound;
 import com.minog.minog.repository.PostRepository;
 import com.minog.minog.request.PostCreate;
 import com.minog.minog.request.PostEdit;
 import com.minog.minog.request.PostSearch;
 import com.minog.minog.response.PostResponse;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class PostServiceTest {
@@ -171,6 +169,63 @@ class PostServiceTest {
         postService.delete(post.getId());
 
         // then
-        Assertions.assertEquals(0, postRepository.count());
+        assertEquals(0, postRepository.count());
+    }
+
+    @Test
+    @DisplayName("글 1개 조회 - 존재하지 않는 글")
+    void test7() {
+        //given
+        Post post = Post.builder()
+                .title("foo")
+                .content("bar")
+                .build();
+
+        postRepository.save(post);
+
+        // excepected
+        assertThrows(PostNotFound.class, () -> {
+            postService.get(post.getId() + 1L);
+        });
+    }
+
+    @Test
+    @DisplayName("글 삭제 - 존재하지 않는 글")
+    void test8() {
+        //given
+        Post post = Post.builder()
+                .title("foo")
+                .content("bar")
+                .build();
+
+        postRepository.save(post);
+
+        // excepected
+        assertThrows(PostNotFound.class, () -> {
+            postService.delete(post.getId() + 1L);
+        });
+    }
+
+    @Test
+    @DisplayName("글 내용 수정 - 존재하지 않는 글")
+    void test9() {
+        //given
+        Post post = Post.builder()
+                .title("foo")
+                .content("bar")
+                .build();
+
+        postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title("test")
+                .content("테스트")
+                .build();
+
+        // expected
+        assertThrows(PostNotFound.class, () -> {
+            postService.edit(post.getId()+1, postEdit);
+        });
+
     }
 }
