@@ -2,6 +2,9 @@
 
 import axios from "axios";
 import {ref} from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const posts = ref([]);
 
@@ -10,13 +13,17 @@ axios.get("/api/posts?page=1&size=5").then((response) => {
       posts.value.push(r);
     });
 });
+
+const moveToRead = () => {
+  router.push({ name : "read" });
+}
 </script>
 
 <template>
   <ul>
-    <li v-for="post in posts" :key="post.id">
+    <li v-for="post in posts" :key="post.id" @click="moveToRead()">
       <div>
-        {{ post.title }}
+        <a href="/read">{{ post.title }}</a>
       </div>
 
       <div>
