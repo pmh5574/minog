@@ -13,17 +13,15 @@ axios.get("/api/posts?page=1&size=5").then((response) => {
       posts.value.push(r);
     });
 });
-
-const moveToRead = () => {
-  router.push({ name : "read" });
-}
 </script>
 
 <template>
   <ul>
-    <li v-for="post in posts" :key="post.id" @click="moveToRead()">
+    <li v-for="post in posts" :key="post.id">
       <div>
-        <a href="/read">{{ post.title }}</a>
+        <router-link :to="{ name: 'read', params: { postId: post.id } }">
+          {{ post.title }}
+        </router-link>
       </div>
 
       <div>
