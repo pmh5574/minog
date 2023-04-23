@@ -1,5 +1,6 @@
 package com.minog.minog.controller;
 
+import com.minog.minog.config.data.UserSession;
 import com.minog.minog.request.PostCreate;
 import com.minog.minog.request.PostEdit;
 import com.minog.minog.request.PostSearch;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,15 +33,17 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "hello";
+    @GetMapping("/foo")
+    public String foo(UserSession userSession) {
+        log.info(">>> {}", userSession.name);
+        return userSession.name;
     }
 
-    @GetMapping("/foo")
-    public String foo() {
-        return "foo";
+    @GetMapping("/bar")
+    public String bar() {
+        return "인증이 필요없는 페이지";
     }
+
 
     @PostMapping("/posts")
     public void post(@RequestBody @Valid PostCreate request) {
