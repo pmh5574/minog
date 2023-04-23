@@ -32,13 +32,17 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/posts")
-    public void post(@RequestBody @Valid PostCreate request) {
+    public void post(@RequestBody @Valid PostCreate request, @RequestHeader String authorization) {
         // Case1. 저장한 데이터 Entity -> response로 응답하기
         // Case2. 저장한 데이터 primary_id -> response로 응답하기
         //          Client에서는 수신한 id를 글 조회 API를 통해서 데이터를 수신받음
         // Case3. 응답 필요 없음 -> Client에서 모든 POST(글) 데이터 context를 잘 관리함
-        request.validate();
-        postService.write(request);
+
+        if (authorization.equals("mino")) {
+            request.validate();
+            postService.write(request);
+        }
+
     }
 
     /**
@@ -57,12 +61,18 @@ public class PostController {
     }
 
     @PatchMapping("/posts/{postId}")
-    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request) {
-        postService.edit(postId, request);
+    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request, @RequestHeader String authorization) {
+        if (authorization.equals("mino")) {
+            postService.edit(postId, request);
+        }
+
     }
 
     @DeleteMapping("/posts/{postId}")
-    public void delete(@PathVariable Long postId) {
-        postService.delete(postId);
+    public void delete(@PathVariable Long postId, @RequestHeader String authorization) {
+        if (authorization.equals("mino")) {
+            postService.delete(postId);
+        }
+
     }
 }
