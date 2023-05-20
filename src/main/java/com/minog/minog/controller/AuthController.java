@@ -4,6 +4,7 @@ import com.minog.minog.domain.User;
 import com.minog.minog.exception.InvalidSigninInformation;
 import com.minog.minog.repository.UserRepository;
 import com.minog.minog.request.Login;
+import com.minog.minog.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,17 +18,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserRepository userRepository;
+    private final AuthService authService;
 
     @PostMapping("/auth/login")
-    public User login(@RequestBody Login login) {
-        // json 아이디/비밀번호
-        log.info("login >> {}", login);
-
-        // DB에서 조회
-        User user = userRepository.findByEmailAndPassword(login.getEmail(), login.getPassword())
-                .orElseThrow(() -> new InvalidSigninInformation());
-
-        return user;
+    public void login(@RequestBody Login login) {
+        authService.signin(login);
     }
 }
