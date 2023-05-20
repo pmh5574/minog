@@ -5,9 +5,7 @@ import com.minog.minog.domain.User;
 import com.minog.minog.repository.SessionRepository;
 import com.minog.minog.repository.UserRepository;
 import com.minog.minog.request.Login;
-import com.minog.minog.request.PostCreate;
-import org.apache.juli.logging.Log;
-import org.junit.jupiter.api.Assertions;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -95,5 +93,31 @@ class AuthControllerTest {
                 .andDo(print());
 
         assertEquals(1L, user.getSessions().size());
+    }
+
+    @Test
+    @DisplayName("로그인 성공 후 세션 응답")
+    void test3() throws Exception {
+        //given
+        User user = userRepository.save(User.builder()
+                .name("미노")
+                .email("test@test.com")
+                .password("1234")
+                .build());
+
+        Login login = Login.builder()
+                .email("test@test.com")
+                .password("1234")
+                .build();
+
+        String json = objectMapper.writeValueAsString(login);
+
+        mockMvc.perform(post("/auth/login")
+                        .contentType(APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken", Matchers.notNullValue()))
+                .andDo(print());
+
     }
 }

@@ -1,5 +1,6 @@
 package com.minog.minog.service;
 
+import com.minog.minog.domain.Session;
 import com.minog.minog.domain.User;
 import com.minog.minog.exception.InvalidSigninInformation;
 import com.minog.minog.repository.UserRepository;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Service
@@ -19,9 +19,11 @@ public class AuthService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void signin(Login login) {
+    public String signin(Login login) {
         User user = userRepository.findByEmailAndPassword(login.getEmail(), login.getPassword())
                 .orElseThrow(() -> new InvalidSigninInformation());
-        user.addSession();
+        Session session = user.addSession();
+
+        return session.getAccessToken();
     }
 }
