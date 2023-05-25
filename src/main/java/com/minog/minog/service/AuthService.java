@@ -7,14 +7,23 @@ import com.minog.minog.repository.UserRepository;
 import com.minog.minog.request.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
+
+import static org.springframework.security.core.userdetails.User.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AuthService {
-
+public class AuthService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -25,5 +34,31 @@ public class AuthService {
         Session session = user.addSession();
 
         return session.getAccessToken();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new InvalidSigninInformation());
+
+        if (user == null) {
+            return null;
+        }
+
+        log.info("user :: = {}", user.getEmail());
+        log.info("user :: = {}", user.getId());
+        log.info("user :: = {}", user.getPassword());
+
+        return builder()
+                .username(user.getEmail())
+                .password(user.getPassword())
+                .authorities(Collections.emptyList())
+                .build();
     }
 }

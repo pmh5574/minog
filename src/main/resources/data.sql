@@ -1,1 +1,1 @@
-INSERT INTO `users` (name, email, password, created_at) VALUES ('미노', 'test@test.com', '1234', '2023-05-10 18:12:22')
+INSERT INTO `users` (name, email, password, created_at) VALUES ('미노', 'test@test.com', '$2y$04$FKmB7lnJqmuxRggn8NzL.OWRBeDQQWpjFYcpy7GUxXJ58UF8HGCR2', '2023-05-10 18:12:22')
