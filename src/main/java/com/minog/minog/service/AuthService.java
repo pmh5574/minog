@@ -7,18 +7,15 @@ import com.minog.minog.repository.UserRepository;
 import com.minog.minog.request.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
-import static org.springframework.security.core.userdetails.User.*;
+import static org.springframework.security.core.userdetails.User.builder;
 
 @Slf4j
 @Service
@@ -34,11 +31,6 @@ public class AuthService implements UserDetailsService {
         Session session = user.addSession();
 
         return session.getAccessToken();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Override

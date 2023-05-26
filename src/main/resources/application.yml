@@ -20,3 +20,5 @@ spring:
     defer-datasource-initialization: true
   sql:
     init-model: always
+jwt:
+  secret: VPIOWNJMvwpojfpewojfwfoPVOvowviwivVIVIVIIVEWIWqe #임시토큰(대충 만듬)
