@@ -7,8 +7,6 @@ const title = ref("")
 const content = ref("")
 
 const write = function() {
-    // console.log(title.value,content.value);
-    // alert(title + " / " + content);
     axios.post("/api/posts", {
         title: title.value,
         content: content.value
