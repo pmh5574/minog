@@ -33,7 +33,8 @@ public class TokenInfo {
 
         public TokenInfo.TokenInfoBuilder accessToken(final String accessToken) {
             if (accessToken != null) {
-                this.accessToken = TokenInfoBuilder.this.accessToken;
+//                this.accessToken = TokenInfoBuilder.this.accessToken;
+                this.accessToken = accessToken;
             }
             return this;
         }
