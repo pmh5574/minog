@@ -43,7 +43,7 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
+        log.info("username = {}", username);
         User user = userRepository.findByEmail(username)
                 .orElseThrow(() -> new InvalidSigninInformation());
 

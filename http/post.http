@@ -1,5 +1,9 @@
-### 테스트 요청
+### 로그인 요청
 
-GET http://localhost:8080/foo
+POST http://localhost:8080/auth/login
 Content-Type: application/json
-Authorization: asdf
+
+{
+ "email" : "test@test.com",
+ "password": "1234"
+}
