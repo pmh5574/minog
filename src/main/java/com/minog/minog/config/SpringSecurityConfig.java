@@ -43,6 +43,7 @@ public class SpringSecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/static/js/**","/static/css/**","/static/img/**","/static/frontend/**", "/auth/login", "/").permitAll() // 해당 API에 대해서는 모든 요청을 허가한다는 설정
+//                .antMatchers("/**").hasAnyRole("USER") // 그 외 페이지는 로그인 한 유저만 사용 가능
                 .anyRequest().authenticated() // 이 밖에 모든 요청에 대해서 인증을 필요로 한다는 설정
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); //JWT 인증을 위하여 직접 구현한 필터를 UsernamePasswordAuthenticationFilter 전에 실행하겠다는 설정
