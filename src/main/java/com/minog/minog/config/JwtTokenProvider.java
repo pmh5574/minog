@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -43,8 +42,9 @@ public class JwtTokenProvider {
         log.info("authorities = {}", authorities);
 
         long now = (new Date()).getTime();
-        // Access Token 생성
         Date accessTokenExpiresIn = new Date(now + 86400000);
+
+        // Access Token 생성
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
@@ -54,9 +54,10 @@ public class JwtTokenProvider {
 
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
-                .setExpiration(new Date(now + 86400000))
+                .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
+
         log.info("accessToken = {}", accessToken);
         log.info("refreshToken = {}", refreshToken);
 
@@ -78,11 +79,18 @@ public class JwtTokenProvider {
 
         log.info("claims = {}", claims);
 
+        log.info("?????");
+
         // 클레임에서 권한 정보 가져오기
-        Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get("auth").toString().split(","))
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList());
+//        Collection<? extends GrantedAuthority> authorities =
+//                Arrays.stream(claims.get("auth").toString().split(","))
+//                        .map(SimpleGrantedAuthority::new)
+//                        .collect(Collectors.toList());
+
+        // 230601 현재 권한 세팅을 안해서 그냥 체크안함 나중에 권한 추가하면 체크!
+        Collection<? extends GrantedAuthority> authorities = Collections.emptyList();
+
+        log.info("authorities = {}", authorities);
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);

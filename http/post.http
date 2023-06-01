@@ -13,4 +13,4 @@ Content-Type: application/json
 
 GET http://localhost:8080/bar
 Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2MDk3Nzd9.yf2hiIlDK_ynrltEOQiSxXDbg1x0-6sbC5v63JSHGDY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2NzI1NDV9.byUDLd4OGhwwGGizCWc0YTM1W_vnLhV-kfGRgiyQQuk
