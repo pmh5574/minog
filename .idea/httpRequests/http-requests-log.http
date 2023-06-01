@@ -5,6 +5,33 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
+<> 2023-06-01T114337.200.txt
+
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+ "email" : "test@test.com",
+ "password": "1234"
+}
+
+<> 2023-06-01T114329.200.json
+
+###
+
+GET http://localhost:8080/bar
+Content-Type: application/json,
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2NzI1NDV9.byUDLd4OGhwwGGizCWc0YTM1W_vnLhV-kfGRgiyQQuk
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
 <> 2023-06-01T112234.200.txt
 
 ###
