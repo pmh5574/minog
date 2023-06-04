@@ -18,6 +18,11 @@ spring:
 
   jpa:
     defer-datasource-initialization: true
+
+    properties:
+      hibernate:
+        session_factory:
+          interceptor: com.minog.minog.config.JpaInterceptor
   sql:
     init-model: always
 jwt:

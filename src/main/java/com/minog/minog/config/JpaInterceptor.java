@@ -12,7 +12,7 @@ public class JpaInterceptor extends EmptyInterceptor {
 
     @Override
     public String onPrepareStatement(String sql) {
-        log.info("qweqwe");
+        log.info(sql);
         return sql;
     }
 
