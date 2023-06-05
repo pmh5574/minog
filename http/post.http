@@ -1,16 +1,14 @@
-### 로그인 요청
+### Post 요청
 
-POST http://localhost:8080/auth/login
+POST http://localhost:8080/posts
 Content-Type: application/json
 
 {
- "email" : "test@test.com",
- "password": "1234"
+  "title" : "test@test.com",
+  "content": "1234"
 }
 
+### Post get 요청
 
-### 로그인 테스트
-
-GET http://localhost:8080/bar
-Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2NzI1NDV9.byUDLd4OGhwwGGizCWc0YTM1W_vnLhV-kfGRgiyQQuk
+GET http://localhost:8080/posts/1
+Content-Type: application/json

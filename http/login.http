@@ -1,0 +1,16 @@
+### 로그인 요청
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "password": "1234"
+}
+
+
+### 로그인 테스트
+
+GET http://localhost:8080/bar
+Content-Type: application/json,
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2NzI1NDV9.byUDLd4OGhwwGGizCWc0YTM1W_vnLhV-kfGRgiyQQuk
