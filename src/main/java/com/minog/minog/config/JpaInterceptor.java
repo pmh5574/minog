@@ -28,6 +28,9 @@ public class JpaInterceptor extends EmptyInterceptor {
         return false;
     }
 
+    // EntityManager는 Autowired해서 사용하면 됨
+    // private EntityManager em; 이런 방식으로
+
 }
 
 
