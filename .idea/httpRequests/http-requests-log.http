@@ -1,3 +1,35 @@
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Content-Length: 53
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email" : "test@test.com",
+  "password": "1234"
+}
+
+<> 2023-06-10T183237.200.json
+
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Content-Length: 53
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email" : "test@test.com",
+  "password": "1234"
+}
+
+<> 2023-06-10T183123.200.json
+
+###
+
 GET http://localhost:8080/posts/1
 Content-Type: application/json
 Connection: Keep-Alive
@@ -593,36 +625,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-06-01T110912.200.json
-
-###
-
-POST http://localhost:8080/auth/login
-Content-Type: application/json
-Content-Length: 51
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
- "email" : "test@test.com",
- "password": "1234"
-}
-
-<> 2023-06-01T103914.200.json
-
-###
-
-POST http://localhost:8080/auth/login
-Content-Type: application/json
-Content-Length: 52
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
- "email" : "test@test.com",
- "password": "12341"
-}
 
 ###
 
