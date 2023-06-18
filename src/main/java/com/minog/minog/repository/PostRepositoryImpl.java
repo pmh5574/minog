@@ -16,6 +16,7 @@ public class PostRepositoryImpl implements PostRepositroyCustom {
 
     @Override
     public List<Post> getList(PostSearch postSearch) {
+        // Qpost not found..
         return jpaQueryFactory.selectFrom(post)
                 .limit(postSearch.getSize())
                 .offset(postSearch.getOffset())
