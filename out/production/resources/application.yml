@@ -1,0 +1,29 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+        default-page-size: 5
+
+  datasource:
+    url: jdbc:h2:mem:minog
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    defer-datasource-initialization: true
+
+    properties:
+      hibernate:
+        session_factory:
+          interceptor: com.minog.minog.config.JpaInterceptor
+  sql:
+    init-model: always
+jwt:
+  secret: VPIOWNJMvwpojfpewojfwfoPVOvowviwivVIVIVIIVEWIWqe #임시토큰(대충 만듬)
