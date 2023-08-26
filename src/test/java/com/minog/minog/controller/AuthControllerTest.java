@@ -51,7 +51,7 @@ class AuthControllerTest {
         userRepository.save(User.builder()
                         .name("미노")
                         .email("test@test.com")
-                        .password("$2y$04$FKmB7lnJqmuxRggn8NzL.OWRBeDQQWpjFYcpy7GUxXJ58UF8HGCR2")
+                        .password("1234")
                         .build());
 
         Login login = Login.builder()
@@ -76,7 +76,7 @@ class AuthControllerTest {
         User user = userRepository.save(User.builder()
                 .name("미노")
                 .email("test@test.com")
-                .password("$2y$04$FKmB7lnJqmuxRggn8NzL.OWRBeDQQWpjFYcpy7GUxXJ58UF8HGCR2")
+                .password("1234")
                 .build());
 
         Login login = Login.builder()
@@ -103,7 +103,7 @@ class AuthControllerTest {
         User user = userRepository.save(User.builder()
                 .name("미노")
                 .email("test@test.com")
-                .password("$2y$04$FKmB7lnJqmuxRggn8NzL.OWRBeDQQWpjFYcpy7GUxXJ58UF8HGCR2")
+                .password("1234")
                 .build());
 
         Login login = Login.builder()
