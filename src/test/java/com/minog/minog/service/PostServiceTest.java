@@ -99,7 +99,6 @@ class PostServiceTest {
         // then
         assertEquals(10L, posts.size());
         assertEquals("foo30", posts.get(0).getTitle());
-//        assertEquals("bar1", posts.get(4).getTitle());
     }
 
     @Test
