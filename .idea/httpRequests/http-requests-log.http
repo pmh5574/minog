@@ -1,3 +1,65 @@
+GET http://localhost:8080/foo
+Content-Type: application/json,
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: SESSION=c163625c-0f19-4ca9-b715-5714a8c46219; SESSION=c163625c-0f19-4ca9-b715-5714a8c46219
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-09-03T173007.200.json
+
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Content-Length: 53
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: SESSION=e2f61a7a-da26-4684-b2e2-17baff25f343
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email" : "test@test.com",
+  "password": "1234"
+}
+
+###
+
+GET http://localhost:8080/foo
+Content-Type: application/json,
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: SESSION=e2f61a7a-da26-4684-b2e2-17baff25f343; SESSION=e2f61a7a-da26-4684-b2e2-17baff25f343
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-09-03T172449.401.json
+
+###
+
+GET http://localhost:8080/bar
+Content-Type: application/json,
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: SESSION=e2f61a7a-da26-4684-b2e2-17baff25f343; SESSION=e2f61a7a-da26-4684-b2e2-17baff25f343
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-09-03T172439.200.txt
+
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Content-Length: 53
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email" : "test@test.com",
+  "password": "1234"
+}
+
+###
+
 POST http://localhost:8080/auth/login
 Content-Type: application/json
 Content-Length: 53
@@ -565,66 +627,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2023-06-01T111734.200.txt
-
-###
-
-GET http://localhost:8080/bar
-Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IiIsImV4cCI6MTY4NTY3MTc1Mn0.55PqTqnMOuLYMzpC5boPvINNMBjqY221ztWORBCUR0E
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-01T111626.200.txt
-
-###
-
-GET http://localhost:8080/bar
-Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IiIsImV4cCI6MTY4NTY3MTc1Mn0.55PqTqnMOuLYMzpC5boPvINNMBjqY221ztWORBCUR0E
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-01T111435.500.html
-
-###
-
-GET http://localhost:8080/bar
-Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IiIsImV4cCI6MTY4NTY3MTc1Mn0.55PqTqnMOuLYMzpC5boPvINNMBjqY221ztWORBCUR0E
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-01T111316.500.html
-
-###
-
-GET http://localhost:8080/bar
-Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IiIsImV4cCI6MTY4NTY3MTc1Mn0.55PqTqnMOuLYMzpC5boPvINNMBjqY221ztWORBCUR0E
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-01T110933.500.html
-
-###
-
-POST http://localhost:8080/auth/login
-Content-Type: application/json
-Content-Length: 51
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
- "email" : "test@test.com",
- "password": "1234"
-}
-
-<> 2023-06-01T110912.200.json
 
 ###
 
