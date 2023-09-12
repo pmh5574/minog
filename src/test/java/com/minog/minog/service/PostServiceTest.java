@@ -186,6 +186,7 @@ class PostServiceTest {
         assertThrows(PostNotFound.class, () -> {
             postService.get(post.getId() + 1L);
         });
+
     }
 
     @Test
