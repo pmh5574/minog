@@ -39,7 +39,7 @@ class PostServiceTest {
     @DisplayName("글 작성")
     void test1() {
         // given
-
+        // commit test
         PostCreate postCreate = PostCreate.builder()
                 .title("제목입니다.")
                 .content("내용입니다.")
@@ -99,7 +99,6 @@ class PostServiceTest {
         // then
         assertEquals(10L, posts.size());
         assertEquals("foo30", posts.get(0).getTitle());
-//        assertEquals("bar1", posts.get(4).getTitle());
     }
 
     @Test
@@ -187,6 +186,7 @@ class PostServiceTest {
         assertThrows(PostNotFound.class, () -> {
             postService.get(post.getId() + 1L);
         });
+
     }
 
     @Test

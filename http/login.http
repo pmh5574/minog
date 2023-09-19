@@ -11,6 +11,6 @@ Content-Type: application/json
 
 ### 로그인 테스트
 
-GET http://localhost:8080/bar
+GET http://localhost:8080/foo
 Content-Type: application/json,
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiYXV0aCI6IlVTRVIiLCJleHAiOjE2ODU2NzI1NDV9.byUDLd4OGhwwGGizCWc0YTM1W_vnLhV-kfGRgiyQQuk
+Cookie: SESSION=c163625c-0f19-4ca9-b715-5714a8c46219
