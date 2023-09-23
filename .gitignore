@@ -2,3 +2,4 @@ nodeenv-16
 build
 .gradle
 .idea
+/out/
