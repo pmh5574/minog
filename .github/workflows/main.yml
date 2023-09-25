@@ -36,6 +36,7 @@ jobs:
     - name: Copy Jar
       run: cp ./build/libs/*.jar ./deploy
 
+      # zip 만들기
     - name: Make zip file
       run: zip -r ./minog.zip ./deploy
       shell: bash
