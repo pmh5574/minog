@@ -44,8 +44,8 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@master
       with:
-        aws_access_key_id: ${{ secrets.AWS_MINOG_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_MINOG_SECRET_ACCESS_KEY }}
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Upload to S3
@@ -54,8 +54,8 @@ jobs:
       # Deploy
     - name: Deploy
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_MINOG_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_MINOG_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         aws deploy create-deployment \
         --application-name minog-codeDeploy \
