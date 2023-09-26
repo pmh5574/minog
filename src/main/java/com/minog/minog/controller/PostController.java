@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class PostController {
 
     @GetMapping("/bar")
     public String bar() {
-        return "인증이 필요없는 페이지";
+        return "뭘봐 ㅋㅋ";
     }
 
 
