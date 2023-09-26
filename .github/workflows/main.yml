@@ -44,9 +44,22 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_MINOG_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_MINOG_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_MINOG_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_MINOG_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-2
 
     - name: Upload to S3
       run: aws s3 cp --region ap-northeast-2 ./minog.zip s3://$S3_BUCKET_NAME/
+
+      # Deploy
+    - name: Deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_MINOG_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_MINOG_SECRET_ACCESS_KEY }}
+      run: |
+        aws deploy create-deployment \
+        --application-name minog-codeDeploy \
+        --deployment-group-name minog-group \
+        --file-exists-behavior OVERWRITE \
+        --s3-location bucket=minog-deploy,bundleType=zip,key=minog.zip \ 
+        --region ap-northeast-2
