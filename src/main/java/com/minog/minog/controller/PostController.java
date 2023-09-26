@@ -40,7 +40,7 @@ public class PostController {
 
     @GetMapping("/bar")
     public String bar() {
-        return "뭘봐! ㅋㅋㅋ";
+        return "뭘봐! ㅋㅋㅋ port가 안죽네..";
     }
 
 
