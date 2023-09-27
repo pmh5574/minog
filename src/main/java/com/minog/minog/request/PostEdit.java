@@ -1,16 +1,13 @@
 package com.minog.minog.request;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@Setter
 @ToString
+@NoArgsConstructor
 public class PostEdit {
 
     @NotBlank(message = "타이틀을 입력해주세요.")
