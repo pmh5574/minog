@@ -1,7 +1,6 @@
 package com.minog.minog.service;
 
 
-import com.minog.minog.domain.Session;
 import com.minog.minog.domain.User;
 import com.minog.minog.exception.InvalidSigninInformation;
 import com.minog.minog.repository.UserRepository;
@@ -19,12 +18,11 @@ public class AuthService {
     private final UserRepository userRepository;
 
     @Transactional
-    public String signin(Login login) {
+    public Long signin(Login login) {
         User user = userRepository.findByEmailAndPassword(login.getEmail(), login.getPassword())
                 .orElseThrow(() -> new InvalidSigninInformation());
-        Session session = user.addSession();
 
-        return session.getAccessToken();
+        return user.getId();
     }
 
 }

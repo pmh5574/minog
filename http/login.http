@@ -8,9 +8,3 @@ Content-Type: application/json
   "password": "1234"
 }
 
-
-### 로그인 테스트
-
-GET http://localhost:8080/foo
-Content-Type: application/json,
-Cookie: SESSION=c163625c-0f19-4ca9-b715-5714a8c46219
