@@ -25,5 +25,6 @@ spring:
           interceptor: com.minog.minog.config.JpaInterceptor
   sql:
     init-model: always
+
 jwt:
-  secret: VPIOWNJMvwpojfpewojfwfoPVOvowviwivVIVIVIIVEWIWqe #임시토큰(대충 만듬)
+  test: test
