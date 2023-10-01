@@ -25,6 +25,3 @@ spring:
           interceptor: com.minog.minog.config.JpaInterceptor
   sql:
     init-model: always
-
-jwt:
-  test: test

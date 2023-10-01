@@ -17,11 +17,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //        registry.addInterceptor(new AuthInterceptor())
 //                .excludePathPatterns("/error", "/favicon.ico");
 //    }
-    private final AppConfig appConfig;
+//    private final AppConfig appConfig;
     private final SessionRepository sessionRepository;
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new AuthResolver(appConfig, sessionRepository));
+        resolvers.add(new AuthResolver(sessionRepository));
     }
 }

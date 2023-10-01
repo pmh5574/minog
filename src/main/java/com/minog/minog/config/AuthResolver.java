@@ -10,6 +10,7 @@ import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -21,10 +22,12 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @RequiredArgsConstructor
 public class AuthResolver implements HandlerMethodArgumentResolver {
 
-    private final AppConfig appConfig;
+//    private final AppConfig appConfig;
 
     private final SessionRepository sessionRepository;
-    private static final String KEY = "pOyeBjLVyRkuXtzie5kaxlCuzo//BNmGCAWgPZc/YYQ=";
+
+    @Value("${jwt.key}")
+    private String KEY;
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         return parameter.getParameterType().equals(UserSession.class);
@@ -32,7 +35,7 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        log.info(">>> {}", appConfig);
+//        log.info(">>> {}", appConfig);
 
         String jws = webRequest.getHeader("Authorization");
         if (jws == null || jws.equals("")) {

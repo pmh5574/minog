@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,8 @@ public class AuthController {
 
     private final AuthService authService;
 
-    private static final String KEY = "pOyeBjLVyRkuXtzie5kaxlCuzo//BNmGCAWgPZc/YYQ=";
+    @Value("${jwt.key}")
+    private String KEY;
 
     @PostMapping("/auth/login")
     public SessionResponse login(@RequestBody Login login) {
